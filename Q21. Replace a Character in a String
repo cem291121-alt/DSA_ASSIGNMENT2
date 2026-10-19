@@ -1,0 +1,28 @@
+
+import java.util.Scanner;
+
+public class Main {
+    static String replace(String s, char c1, char c2) {
+        if (s.length() == 0) {
+            return "";
+        }
+
+        char first = s.charAt(0);
+        String rest = replace(s.substring(1), c1, c2);
+
+        if (first == c1) {
+            return c2 + rest;
+        }
+
+        return first + rest;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        char c1 = sc.next().charAt(0);
+        char c2 = sc.next().charAt(0);
+
+        System.out.print(replace(s, c1, c2));
+    }
+}
