@@ -1,0 +1,41 @@
+
+import java.util.Scanner;
+
+public class Main {
+    static int binarySearch(int[] a, int low, int high, int x) {
+        if (low > high) {
+            return -1;
+        }
+
+        int mid = low + (high - low) / 2;
+
+        if (a[mid] == x) {
+            int left = binarySearch(a, low, mid - 1, x);
+
+            if (left != -1) {
+                return left;
+            }
+
+            return mid;
+        }
+
+        if (a[mid] < x) {
+            return binarySearch(a, mid + 1, high, x);
+        }
+
+        return binarySearch(a, low, mid - 1, x);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int x = sc.nextInt();
+        int[] a = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+
+        System.out.print(binarySearch(a, 0, n - 1, x));
+    }
+}
